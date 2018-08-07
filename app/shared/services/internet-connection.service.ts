@@ -1,28 +1,20 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
 import {startMonitoring} from "tns-core-modules/connectivity";
+import {Observable} from "rxjs/internal/Observable";
 
 @Injectable()
 export class InternetConnectionService {
 
-    private connectionSubject = new BehaviorSubject<Boolean>(false);
+    getConnectionStatus(): Observable<boolean> {
 
-    constructor() {
-        startMonitoring(connectionType => {
-            if (connectionType == 0) {
-                this.updateConnectionSubject(false);
-            }
-            else
-                this.updateConnectionSubject(true);
-        });
+        return Observable.create(observer => {
+            startMonitoring(connectionType => {
+                if (connectionType == 0) {
+                    observer.next(false);
+                }
+                else
+                    observer.next(true);
+            });
+        })
     }
-
-    getConnectionStatus() {
-        return this.connectionSubject.asObservable();
-    }
-
-    private updateConnectionSubject(connection: boolean) {
-        this.connectionSubject.next(connection);
-    }
-
 }
