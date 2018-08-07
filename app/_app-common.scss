@@ -1,0 +1,17 @@
+@import '~nativescript-theme-core/scss/light';
+@import '~nativescript-theme-core/scss/index';
+
+.connection-status-bar{
+  background-color: #4353ff;
+  padding: 10px 0px;
+  text-align: center;
+  .title{
+    color: #ECECEC;
+  }
+}
+
+.connection-icon {
+  font-family: Icomoon, 'icomoon', icomoon;
+  font-size: 72pt;
+  color: #4353ff;
+}

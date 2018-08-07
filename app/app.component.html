@@ -1,0 +1,6 @@
+<GridLayout class="page" columns="*" rows="*,auto">
+    <page-router-outlet [col]="0" [row]="0"></page-router-outlet>
+    <StackLayout class="connection-status-bar" col="0" row="1">
+        <Label class="title" text="{{(connectionStatus) ? 'app is online now' : 'app is offline now'}}"></Label>
+    </StackLayout>
+</GridLayout>
