@@ -8,8 +8,8 @@ import {InternetConnectionService} from "~/shared/services/internet-connection.s
     templateUrl: "./home.component.html"
 })
 export class HomeComponent implements OnInit, OnDestroy {
-    connectionStatus: boolean = false;
     connection$;
+    connectionStatus: boolean = false;
 
     constructor(private page: Page,
                 private _internetConnection: InternetConnectionService) {
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.connection$ = this._internetConnection.getConnectionStatus().subscribe(data => {
+        this.connection$ = this._internetConnection.connectionStatus$.subscribe(data => {
             this.connectionStatus = data.valueOf();
         });
     }
